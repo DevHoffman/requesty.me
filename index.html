@@ -1,213 +1,1094 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>REQUESTY.ME - Login</title>
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
-    <!-- Google Fonts (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <!-- Font Awesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- CSS Externo -->
-    <link rel="stylesheet" href="assets/css/style.css" />
 
-    <style>
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" href="https://requesty.me/favicon/favicon.ico" type="image/x-icon" />
 </head>
 
+<style>
+    :root {
+        --primary: #ff6600;
+        --primary-dark: #e55c00;
+        --primary-light: #ff8533;
+        --primary-50: #fff7ed;
+        --primary-100: #ffedd5;
+        --primary-200: #fed7aa;
+        --primary-300: #fdba74;
+        --primary-400: #fb923c;
+        --primary-500: #f97316;
+        --primary-600: #ea580c;
+        --primary-700: #c2410c;
+        --primary-800: #9a3412;
+        --primary-900: #7c2d12;
+        --white: #ffffff;
+        --gray-50: #f9fafb;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --gray-500: #6b7280;
+        --gray-600: #4b5563;
+        --gray-700: #374151;
+        --gray-800: #1f2937;
+        --gray-900: #111827;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        --gradient-primary: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
+        --gradient-secondary: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+        --gradient-accent: linear-gradient(135deg, var(--primary-100) 0%, var(--primary-50) 100%);
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+        margin: 0;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    /* Destaques */
+    .bloco-destaques {
+        display: grid;
+        justify-items: center;
+        gap: 2rem;
+        padding: 48px 40px;
+        background: linear-gradient(135deg, #fef7ed 0%, #fff7ed 25%, #fef3e2 50%, #fef2f2 75%, #fef7ed 100%);
+        border-left: 3px solid var(--primary-400);
+        position: relative;
+        max-height: 100vh;
+        overflow: auto;
+    }
+
+    .bloco-destaques::-webkit-scrollbar-track,
+    .bloco-destaques::-webkit-scrollbar-thumb {
+        display: none;
+    }
+
+    /* Para Firefox */
+    .bloco-destaques {
+        scrollbar-color: transparent transparent;
+    }
+
+    .bloco-destaques::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, var(--primary-600) 0%, var(--primary-400) 50%, var(--primary-200) 100%);
+        box-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
+    }
+
+    .bloco-destaques .destaque:hover .destaque-imagem img {
+        transform: scale(1.12);
+        filter: brightness(1.05) contrast(1.1);
+    }
+
+    .bloco-destaques .destaque:hover:after {
+        width: 100%;
+    }
+
+    .bloco-destaques .destaque {
+        /* margin-top: 0; */
+        min-height: 710px;
+        max-width: calc(21rem - 0.5rem);
+        display: grid;
+        /* gap: 1.5rem; */
+        /* padding: 1.5rem; */
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(255, 102, 0, 0.15), 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(255, 102, 0, 0.15);
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        /* min-height: 160px; */
+        /* opacity: 0; */
+        position: relative;
+        backdrop-filter: blur(10px);
+        /* transform: translateX(30px) scale(0.95); */
+    }
+
+    .bloco-destaques .destaque::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--gradient-primary);
+        transition: all 0.4s ease;
+        width: 0;
+    }
+
+    .bloco-destaques .destaque::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+        opacity: 0.6;
+    }
+
+    .bloco-destaques .destaque .destaque-topo {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(255, 102, 0, 0.08) 0%, rgba(255, 102, 0, 0.05) 100%);
+        border-bottom: 1px solid rgba(255, 102, 0, 0.1);
+    }
+
+    .bloco-destaques .destaque .destaque-topo .requestme-logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-right: 1.25rem;
+        flex-shrink: 0;
+        overflow: hidden;
+        border: 4px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 25px rgba(255, 102, 0, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+    }
+
+    .bloco-destaques .destaque .destaque-topo img {
+        width: 56px;
+    }
+
+    .bloco-destaques .destaque .destaque-topo h4 {
+        font-weight: 700;
+        color: var(--gray-900);
+        font-size: 0.9rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .bloco-destaques .destaque .destaque-topo h5 {
+        color: var(--gray-500);
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .bloco-destaques .destaque .destaque-imagem {
+        width: calc(100% - 3rem);
+        margin-inline: auto;
+        border-radius: 15px;
+        overflow: hidden;
+        /* position: relative; */
+    }
+
+    .bloco-destaques .destaque .destaque-imagem img {
+        /* border-radius: 15px; */
+        transition: all .3s ease-in-out;
+        object-fit: cover;
+        /* width: 100%; */
+        filter: brightness(0.95) contrast(1.05);
+        width: 100%;
+        height: 100%;
+        max-height: 650px;
+    }
+
+    .bloco-destaques .destaque .destaque-texto {
+        padding: 1.5rem;
+        /* padding-bottom: 1.5rem; */
+        display: grid;
+        gap: 15px;
+    }
+
+    .bloco-destaques .destaque .destaque-texto h3 {
+        font-size: 1.2rem;
+        font-weight: 800;
+        line-height: 1.4;
+    }
+
+    .bloco-destaques .destaque .destaque-texto p {
+        color: var(--gray-700);
+        line-height: 1.6;
+        font-size: 1.15rem;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+
+    /* Login */
+    .bloco-login-padding {
+        padding: 4rem 3rem;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .bloco-login-padding::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: var(--gradient-primary);
+    }
+
+    .bloco-login {
+        position: relative;
+        max-width: 520px;
+        margin-inline: auto;
+        display: grid;
+        gap: 2.5rem;
+        /* text-align: center; */
+    }
+
+    .bloco-login::after {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -110px;
+        width: 300px;
+        height: 300px;
+        background: var(--gradient-accent);
+        border-radius: 50%;
+        transform: translate(150px, -150px);
+        opacity: 0.6;
+        z-index: 0;
+    }
+
+    .bloco-login .bloco-logo {
+        width: 100%;
+        height: 120px;
+        /* margin: 0 auto 2rem; */
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--white);
+        box-shadow: var(--shadow-xl);
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        z-index: 1;
+    }
+
+    .bloco-logo:hover:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: var(--gradient-primary);
+        opacity: 0.1;
+    }
+
+    .bloco-logo:hover img {
+        transform: scale(1.1);
+        margin-left: 10px;
+    }
+
+    .bloco-logo img {
+        transition: all .3s ease-in-out;
+    }
+
+    .bloco-login .descricao {
+        text-align: center;
+        */ margin-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .bloco-login .descricao p {
+        color: #ff7000;
+        font-size: 1.15rem;
+        font-weight: 400;
+        max-width: 100%;
+        margin: 0 auto;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .bloco-login .form-login {
+        background: var(--white);
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: var(--shadow-2xl);
+        border: 1px solid var(--gray-100);
+        position: relative;
+        overflow: hidden;
+        row-gap: 2rem;
+        /* display: flex; */
+        /* flex-direction: column; */
+    }
+
+    .bloco-login .form-login::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: var(--gradient-primary);
+    }
+
+    .bloco-login .form-login h2 {
+        /* text-align: center; */
+        /* margin-bottom: 2rem; */
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--gray-900);
+        margin-bottom: 2rem;
+        text-align: center;
+        letter-spacing: -0.025em;
+    }
+
+    .bloco-login .form-login .checkbox-group input {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--primary-600);
+        border-radius: 6px;
+    }
+
+    .bloco-login .form-login .form-label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--gray-700);
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.025em;
+    }
+
+    .bloco-login .form-login .form-input {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border: 2px solid var(--gray-200);
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--white);
+        color: var(--gray-900);
+        position: relative;
+    }
+
+    .bloco-login .form-login .form-group {
+        margin-top: 1.75rem;
+        position: relative;
+    }
+
+    .bloco-login .form-login .form-input:focus {
+        outline: none;
+        border-color: var(--primary-500);
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        transform: translateY(-1px);
+    }
+
+    .bloco-login .form-login .form-group-password {
+        position: relative;
+    }
+
+    .bloco-login .form-login .form-group-password .eye-toggle {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--gray-500);
+        cursor: pointer;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .bloco-login .form-login .checkbox-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        margin-top: 1.75rem;
+    }
+
+    .bloco-login .form-login .checkbox-group p {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+    .bloco-login .form-login .reset-senha-link {
+        font-size: 0.875rem;
+        color: var(--primary-600);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+    }
+
+    .bloco-login .form-login .reset-senha-link:hover {
+        background: var(--primary-50);
+        color: var(--primary-700);
+    }
+
+    .bloco-login .form-login .login-button {
+        width: 100%;
+        padding: 1.125rem;
+        background: var(--gradient-primary);
+        color: var(--white);
+        border: 0;
+        border-radius: 12px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-lg);
+        position: relative;
+    }
+
+    .bloco-login .form-login .login-button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-2xl);
+    }
+
+    .bloco-login .form-login .login-button:hover::before {
+        left: 100%;
+    }
+
+    .bloco-login .form-login .login-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .bloco-login .form-login .divisor {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin: 2.5rem 0;
+    }
+
+    .bloco-login .form-login .divisor span {
+        background-color: white;
+        position: relative;
+        z-index: 1;
+        padding: 0 24px;
+    }
+
+    .bloco-login .form-login .divisor::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--gray-200);
+    }
+
+    .bloco-login .form-login .bloco-criar-conta {
+        text-align: center;
+    }
+
+
+    .bloco-login .form-login .bloco-criar-conta p {
+        color: var(--gray-600);
+        font-size: 0.875rem;
+        margin-bottom: 1.25rem;
+        font-weight: 500;
+    }
+
+    .bloco-login .form-login .bloco-criar-conta a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: var(--white);
+        color: var(--primary-600);
+        border: 2px solid var(--primary-200);
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow);
+    }
+
+    .bloco-login .form-login .bloco-criar-conta a:hover {
+        background: var(--primary-50);
+        border-color: var(--primary-400);
+        color: var(--primary-700);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-lg);
+    }
+
+
+
+    /* Footer */
+    footer {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #fff5f0 100%);
+        color: #333333;
+        position: relative;
+        overflow: hidden;
+        margin-top: auto;
+        border-top: 3px solid #ff6600;
+        flex-shrink: 0;
+        z-index: 100;
+    }
+
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.3;
+        background: url(data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ff6600" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>);
+
+    }
+
+    footer .container-fluid {
+        position: relative;
+        z-index: 2;
+        /* display: grid; */
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px 40px;
+        min-height: auto;
+    }
+
+    footer h3 {
+        font-size: 18px;
+        font-weight: 600;
+        /* margin: 0 0 20px; */
+        color: #333333;
+        position: relative;
+        padding-bottom: 10px;
+        display: inline;
+    }
+
+    footer h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        height: 3px;
+        background: linear-gradient(90deg, #ff6600, #ff8533);
+        border-radius: 2px;
+    }
+
+    footer img {
+        max-width: 100%;
+        height: 80px;
+        object-fit: contain;
+        margin-right: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    footer p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #666666;
+        margin: 0;
+        max-width: 300px;
+        /* justify-self: center; */
+    }
+
+    footer ul.social-media {
+        display: flex;
+        column-gap: 15px;
+        align-items: center;
+        list-style-type: none;
+        margin-top: 30px;
+        padding-left: 25px;
+    }
+
+    footer ul.social-media li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: #ffffff;
+        color: #ff6600;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: 2px solid #ff6600;
+        box-shadow: 0 2px 8px rgba(255, 102, 0, 0.1);
+    }
+
+    footer ul.social-media li:hover a {
+        transform: translateY(-3px);
+        background: #ff6600;
+        color: #ffffff;
+        box-shadow: 0 8px 20px rgba(255, 102, 0, 0.3);
+    }
+
+    footer ul.social-media li.facebook:hover>a {
+        background: #1877f2;
+        border-color: #1877f2;
+    }
+
+    footer ul.social-media li.instagram:hover>a {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        border-color: #dc2743;
+    }
+
+    footer ul.links-uteis {
+        padding: 0;
+        list-style-type: none;
+        display: grid;
+        /* row-gap: 15px; */
+        margin-top: 1rem;
+    }
+
+    footer ul.links-uteis li {
+        position: relative;
+        display: inline-flex;
+    }
+
+    footer ul.links-uteis li a {
+        padding: 18px 0 10px;
+        color: #555555;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    footer h3::before,
+    footer ul.links-uteis li a::before {
+        content: '';
+        width: 0;
+        height: 2px;
+        background-color: #ff6600;
+        position: absolute;
+        bottom: 0;
+        transition: all .3s ease-in-out;
+    }
+
+    footer h3::before {
+        height: 3px;
+    }
+
+    footer h3:hover::before,
+    footer ul.links-uteis li a:hover::before {
+        width: 100%;
+    }
+
+    /* 
+        footer ul.links-uteis li a:hover {
+            padding-left: 5px;
+        } */
+
+    footer ul.links-uteis li a i {
+        margin-right: 10px;
+        width: 16px;
+        text-align: center;
+        font-size: 12px;
+        color: #ff6600;
+    }
+
+
+    @media (max-width: 1500px) {
+        footer .container {
+            /* grid-template-columns: 2fr 1fr 1fr; */
+            gap: 30px;
+            padding: 50px 20px 30px;
+            max-width: 1200px;
+        }
+
+        footer .container .descricao {
+            padding-left: 25px;
+        }
+    }
+
+    footer .container.sub-footer {
+        display: block;
+        padding: 20px;
+    }
+
+    footer .container.sub-footer p {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    footer .container.sub-footer strong {
+        color: #ff6600;
+        font-weight: 600;
+    }
+
+    /* Page Loader */
+    .pre-loader {
+        position: fixed;
+        inset: 0;
+        background: var(--white);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        z-index: 2000;
+        opacity: 1;
+        transition: opacity 500ms ease;
+        border-radius: 0;
+    }
+
+    .pre-loader.card::before {
+        width: 0;
+    }
+
+    .full-width.card::before {
+        transition: all 1.5s ease;
+        width: 100%;
+    }
+
+    .pre-loader.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .pre-loader img {
+        width: min(420px, 70vw);
+        height: auto;
+        animation: all 0.7s ease-out 0.15s both;
+        margin-top: 2rem;
+
+    }
+
+    .pre-loader.full-width img {
+        transition: all 1.5s ease;
+        margin: 0;
+    }
+
+    .loader-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        animation: scaleIn 0.6s ease-out;
+    }
+
+    .loader-logo-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-2xl);
+        background: var(--gradient-primary);
+        animation: pulseRing 1.3s ease-in-out infinite;
+    }
+
+    .loader-logo-circle img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.08));
+    }
+
+    .loader-wordmark {
+        width: min(420px, 70vw);
+        height: auto;
+        animation: fadeInUp 0.7s ease-out 0.15s both;
+    }
+
+    @keyframes pulseRing {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.35);
+        }
+
+        70% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 14px rgba(99, 102, 241, 0);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        .bloco1 {
+            display: flex;
+            flex-direction: column-reverse;
+            overflow: hidden;
+        }
+
+        .bloco-destaques {
+            min-height: 100vh;
+        }
+
+        .bloco-login-padding {
+            overflow: visible;
+            padding: 2rem 1.5rem;
+        }
+
+        .bloco-login .bloco-logo {
+            height: 100px;
+        }
+
+        .bloco-login .descricao {
+            margin-bottom: 0;
+        }
+
+        footer img {
+            margin-inline: auto;
+        }
+
+        footer .container-fluid {
+            padding: 2rem 1.5rem;
+        }
+
+        footer .logo-footer {
+            text-align: center;
+        }
+
+        footer .descricao {
+            text-align: center;
+        }
+
+        footer .descricao p {
+            margin-inline: auto;
+        }
+
+        footer ul.social-media {
+            padding: 0;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        footer h3 {
+            width: 100%;
+            text-align: center;
+            margin-inline: auto;
+            /* display: inline-flex; */
+        }
+    }
+</style>
+
 <body>
-    <div class="pre-loader card" id="preLoader" aria-live="polite" aria-busy="true">
-        <div class="loader-content">
-            <img class="loader" src="assets/images/logo_request2.png" alt="REQUESTY.ME" loading="eager" />
-        </div>
-    </div>
-    <div class="container" id="testimonials-container">
-        <div class="col testimonials">
-            <div class="testimonials-feed">
-                <div class="testimonials-card card">
-                    <!-- Header do post -->
-                    <div class="testimonials-header-card">
-                        <div class="testimonials-logo">
-                            <img src="assets/images/logo.png" alt="Logo REQUESTY.ME" />
+    <div class="container-fluid">
+        <div class="row bloco1">
+            <div class="col col-lg-6 bloco-destaques">
+                <div class="destaque">
+                    <div class="destaque-topo">
+                        <div class="requestme-logo">
+                            <img src="https://requesty.me/imagens/logo.png" alt="Logo da Requestme" />
                         </div>
-                        <div class="testimonials-user-info">
-                            <h3>REQUESTY.ME</h3>
-                            <h4>02/09/2025 14:08</h4>
+                        <div class="d-grid gap-2">
+                            <h4>REQUEST.ME</h4>
+                            <h5>11/09/2025 15:04</h5>
                         </div>
                     </div>
-
-                    <!-- Mídia do post -->
-                    <div class="testimonials-media" style="filter: brightness(0.95) contrast(1.05);">
-                        <img src="assets/images/pack_291_1756230726_7.jpeg" alt="calopes" class="testimonials-image" />
+                    <div class="destaque-imagem">
+                        <img src="https://requesty.me/uploads_packs/pack_291_1756230726_7.jpeg"
+                            alt="Foto da Malu Franco" />
                     </div>
-
-                    <!-- Conteúdo do post -->
-                    <div class="testimonials-content">
-                        <h3 class="testimonials-title-post">Malu Franco</h3>
-
-                        <p class="testimonials-description">Conteúdo exclusivo | 🔥
+                    <div class="destaque-texto">
+                        <h3>Malu Franco</h3>
+                        <p>Conteúdo exclusivo | 🔥
                             O que é só meu, posso compartilhar com você… 👀</p>
                     </div>
                 </div>
-                <div class="testimonials-card card">
-                    <!-- Header do post -->
-                    <div class="testimonials-header-card">
-                        <div class="testimonials-logo">
-                            <img src="assets/images/logo.png" alt="Logo REQUESTY.ME" />
+                <div class="destaque">
+                    <div class="destaque-topo d-flex align-items-center">
+                        <div class="requestme-logo">
+                            <img src="https://requesty.me/imagens/logo.png" alt="Logo da Requestme" />
                         </div>
-                        <div class="testimonials-user-info">
-                            <h3>REQUESTY.ME</h3>
-                            <h4>11/09/2025 15:04</h4>
+                        <div class="d-grid">
+                            <h4>REQUEST.ME</h4>
+                            <h5>11/09/2025 15:04</h5>
                         </div>
                     </div>
-
-                    <!-- Mídia do post -->
-                    <div class="testimonials-media" style="filter: brightness(0.95) contrast(1.05);">
-                        <img src="assets/images/midia_316_1757583765.webp" alt="calopes" class="testimonials-image" />
+                    <div class="destaque-imagem">
+                        <img src="https://requesty.me/uploads_criadores/midia_316_1757583765.webp" alt="Foto calopes" />
                     </div>
-
-                    <!-- Conteúdo do post -->
-                    <div class="testimonials-content">
-                        <h3 class="testimonials-title-post">calopes</h3>
-
-                        <p class="testimonials-description">Aqui você vai ter acesso ao meu conteúdo mais especial!
-                            Exclusivos só pra você. Vem comigo nessa jornada 🔥</p>
+                    <div class="destaque-texto">
+                        <h3>calopes</h3>
+                        <p>Aqui você vai ter acesso ao meu conteúdo mais especial!
+                            Exclusivos só pra você. Vem...</p>
                     </div>
                 </div>
-                <div class="testimonials-card card">
-                    <!-- Header do post -->
-                    <div class="testimonials-header-card">
-                        <div class="testimonials-logo">
-                            <img src="assets/images/logo.png" alt="Logo REQUESTY.ME" />
+                <div class="destaque">
+                    <div class="destaque-topo d-flex align-items-center">
+                        <div class="requestme-logo">
+                            <img src="https://requesty.me/imagens/logo.png" alt="Logo da Requestme" />
                         </div>
-                        <div class="testimonials-user-info">
-                            <h3>REQUESTY.ME</h3>
-                            <h4>11/09/2025 15:16</h4>
+                        <div class="d-grid">
+                            <h4>REQUEST.ME</h4>
+                            <h5>11/09/2025 15:04</h5>
                         </div>
                     </div>
-
-                    <!-- Mídia do post -->
-                    <div class="testimonials-media" style="filter: brightness(0.95) contrast(1.05);">
-                        <img src="assets/images/pack_234_1757447358_2.jpeg" alt="calopes" class="testimonials-image" />
+                    <div class="destaque-imagem">
+                        <img src="https://requesty.me/uploads_packs/pack_234_1757447358_2.jpeg"
+                            alt="Foto da Malu Franco" />
                     </div>
-
-                    <!-- Conteúdo do post -->
-                    <div class="testimonials-content">
-                        <h3 class="testimonials-title-post">gabrielborges</h3>
-
-                        <p class="testimonials-description">Para os íntimos ❤️‍🔥</p>
+                    <div class="destaque-texto">
+                        <h3>gabrielborges</h3>
+                        <p>Para os íntimos ❤️‍🔥</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col auth-card">
-            <div class="floating-shapes">
-                <div class="floating-shape"></div>
-                <div class="floating-shape"></div>
-                <div class="floating-shape"></div>
-            </div>
-            <div class="logo card">
-                <img src="assets/images/logo_watermark.png" alt="REQUESTY.ME Logo" />
-            </div>
-            <div class="description">
-                <p id="text-description">Mais que conteúdo, uma conexão real.</p>
-            </div>
-            <div class="auth-login-form card">
-                <h2>Bem-vindo de volta</h2>
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" name="email" id="email" class="form-input" placeholder="seu@email.com" required />
+            <div class="col col-lg-6 bloco-login-padding">
+                <div class="floating-shapes">
+                    <div class="floating-shape"></div>
+                    <div class="floating-shape"></div>
+                    <div class="floating-shape"></div>
+                </div>
+                <div class="bloco-login">
+                    <div class="bloco-logo">
+                        <img src="https://requesty.me/imagens/logo_watermark.png" alt="Logo da Request Me" />
                     </div>
-                    <div class="form-group">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-password-group">
-                            <input type="password" name="password" id="password" class="form-input" required
-                                placeholder="Sua senha" />
-                            <button type="button" class="eye-toggle" onclick="togglePassword()">
-                                <i class="fas fa-eye"></i>
+                    <div class="descricao">
+                        <p>Mais que conteúdo, uma conexão real.</p>
+                    </div>
+                    <form action="#" action="POST" class="form-login">
+                        <h2>Bem-vindo de volta</h2>
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" name="email" id="email" class="form-input" placeholder="seu@email.com"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Senha</label>
+                            <div class="form-group-password">
+                                <input type="password" name="password" id="password" class="form-input" required
+                                    placeholder="Sua senha" />
+                                <button type="button" class="eye-toggle" onclick="togglePassword()">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="checkbox-group">
+                            <div class="d-flex gap-3">
+                                <input type="checkbox" name="lembrar-me" id="lembrar-me" />
+                                <label for="lembrar-me">Lembrar de mim</label>
+                            </div>
+                            <div>
+                                <a href="#" class="reset-senha-link">Esqueceu a senha?</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="login-button">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Entrar na conta
                             </button>
                         </div>
-                    </div>
-                    <div class="form-checkbox">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="remember-me" name="remember-me" class="checkbox-input">
-                            <label for="remember-me" class="checkbox-label">Lembrar de mim</label>
+                        <div class="divisor">
+                            <span>ou</span>
                         </div>
-                        <a href="#" class="forgot-link">Esqueceu a senha?</a>
-                    </div>
-                    <button type="submit" class="login-button">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Entrar na conta
-                    </button>
-                    <div class="divider">
-                        <span>ou</span>
-                    </div>
-                    <div class="signup-section">
-                        <p class="signup-text">Não tem uma conta?</p>
-                        <a href="#" class="signup-button">
-                            <i class="fas fa-user-plus"></i>
-                            Criar conta
-                        </a>
-                    </div>
-                </form>
+                        <div class="bloco-criar-conta">
+                            <p>Não tem uma conta?</p>
+                            <a href="cadastro">
+                                <i class="fas fa-user-plus"></i>
+                                Criar conta
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     <footer>
-        <div class="container">
-            <div class="col">
-                <div class="logo-footer">
-                    <img src="assets/images/logo_request2.png" alt="REQUESTY.ME" class="logo-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="logo-footer">
+                        <img src="https://requesty.me/imagens/logo_watermark.png" alt="REQUESTY.ME" class="logo-footer">
+                    </div>
+                    <div class="descricao">
+                        <p>Plataforma inovadora para compartilhamento e descoberta de conteúdos exclusivos.</p>
+                    </div>
+                    <ul class="social-media">
+                        <li class="facebook">
+                            <a href="https://www.facebook.com/profile.php?id=61577647038003">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="instagram">
+                            <a href="https://instagram.com/requestyme">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="description">
-                    <p>Plataforma inovadora para compartilhamento e descoberta de conteúdos exclusivos.</p>
+                <div class="col-12 offset-lg-2 col-lg-3">
+                    <h3>Navegação</h3>
+                    <ul class="links-uteis">
+                        <li><a href="/painel"><i class="fas fa-home"></i> Início</a></li>
+                        <li><a href="/buscar"><i class="fas fa-search"></i> Buscar</a></li>
+                        <li><a href="/perfil"><i class="fas fa-user"></i> Meu Perfil</a></li>
+                        <li><a href="/faq/index.php"><i class="fas fa-file-alt"></i> Regulamento</a>
+                        </li>
+                        <li><a href="/faq"><i class="fas fa-question-circle"></i> F.A.Q</a></li>
+                        <li><a href="/uso-da-marca" target="_blank"><i class="fas fa-puzzle-piece"></i>
+                                Uso da Marca</a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="social-icons">
-                    <li class="facebook">
-                        <a href="https://www.facebook.com/profile.php?id=61577647038003">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li class="instagram">
-                        <a href="https://instagram.com/requestyme">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col">
-                <h3>Navegação</h3>
-                <ul class="links-uteis">
-                    <li><a href="/painel"><i class="fas fa-home"></i> Início</a></li>
-                    <li><a href="/buscar"><i class="fas fa-search"></i> Buscar</a></li>
-                    <li><a href="/perfil"><i class="fas fa-user"></i> Meu Perfil</a></li>
-                    <li><a href="/faq/index.php"><i class="fas fa-file-alt"></i> Regulamento</a>
-                    </li>
-                    <li><a href="/faq"><i class="fas fa-question-circle"></i> F.A.Q</a></li>
-                    <li><a href="/uso-da-marca" target="_blank"><i class="fas fa-puzzle-piece"></i>
-                            Uso da Marca</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col">
-                <h3>Suporte</h3>
-                <ul class="links-uteis">
-                    <li>
-                        <a href="/contato"><i class="fas fa-envelope"></i> Contato</a>
-                    </li>
-                    <li>
-                        <a href="/termos-uso"><i class="fas fa-gavel"></i> Termos de Uso</a>
-                    </li>
-                    <li>
-                        <a href="/politica-privacidade"><i class="fas fa-shield-alt"></i>
-                            Política de Privacidade
-                        </a>
-                    </li>
-                </ul>
+                <div class="col-12 col-lg-3">
+                    <h3>Suporte</h3>
+                    <ul class="links-uteis">
+                        <li>
+                            <a href="/contato"><i class="fas fa-envelope"></i> Contato</a>
+                        </li>
+                        <li>
+                            <a href="/termos-uso"><i class="fas fa-gavel"></i> Termos de Uso</a>
+                        </li>
+                        <li>
+                            <a href="/politica-privacidade"><i class="fas fa-shield-alt"></i>
+                                Política de Privacidade
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="container sub-footer">
@@ -215,77 +1096,76 @@
             <p>Requesty.me Entretenimentos Ltda - CNPJ 58.534.639/0001-37</p>
         </div>
     </footer>
+    <div class="pre-loader card" id="preLoader" aria-live="polite" aria-busy="true">
+        <div class="loader-content">
+            <img class="loader" src="https://requesty.me/imagens/logo_watermark.png" alt="REQUESTY.ME"
+                loading="eager" />
+        </div>
+    </div>
 
-</body>
-
-<script type="text/Javascript">
-    // Toggle de senha
-    function togglePassword() {
-        const passwordInput = document.getElementById('password');
-        const toggleButton = document.querySelector('.eye-toggle i');
-        
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            toggleButton.className = 'fas fa-eye-slash';
-        } else {
-            passwordInput.type = 'password';
-            toggleButton.className = 'fas fa-eye';
-        }
-    }
-
-    
-    // Função do typewriter
-    function startTypeWriter() {
-        const text = "Mais que conteúdo, uma conexão real.";
-        const text_description = document.getElementById("text-description");
-        
-        
-        if (!text_description) return;
-        
-        let i = 0;
-        text_description.textContent = ''; // Limpar o conteúdo inicial
-        
-        function typeWriter() {
-            if (i < text.length) {
-                text_description.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 45);
+    <script type="text/Javascript">
+        // Botão toggle que exibe e oculta a senha
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = document.querySelector('.eye-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.className = 'fas fa-eye';
             }
         }
         
-        // Pequeno delay para suavizar a transição
-        setTimeout(typeWriter, 200);
-    }
-
-    // Loader + foco automático no campo de email
-    document.addEventListener('DOMContentLoaded', function() {
-        const loader = document.getElementById('preLoader');
-        const main = document.getElementById('testimonials-container');
-        loader.classList.add('full-width'); // Adiciona a classe para alterar o ::before
-        
-        // Segurança: garante que o conteúdo só apareça após o loader
-        const reveal = () => {
-            if (loader) {
-                loader.classList.add('hide');
-                
-            }
-            if (main) {
-                main.classList.remove('is-hidden');
-                main.classList.add('is-visible');
+        function startTypeWriter() { // Função responsável pelo efeito no texto abaixo do logo
+            const text = "Mais que conteúdo, uma conexão real.";
+            const text_description = document.getElementById("text-description");
+            
+            if (!text_description) return;
+            
+            let i = 0;
+            text_description.textContent = ''; // Limpar o conteúdo inicial
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    text_description.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 45);
+                }
             }
             
-            // Iniciar o typewriter após o loader terminar
-            startTypeWriter();
-        };
-
-        setTimeout(reveal, 1500);
-
-        const emailInput = document.getElementById('email');
-        if (emailInput) {
-            emailInput.focus();
+            // Pequeno delay para suavizar a transição do texto
+            setTimeout(typeWriter, 200);
         }
-    });
 
-</script>
+        // Loader + foco automático no campo de email
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.getElementById('preLoader');
+            const main = document.getElementById('testimonials-container');
+            loader.classList.add('full-width'); // Adiciona a classe para alterar o ::before
+            
+            const reveal = () => {
+                if (loader) {
+                    loader.classList.add('hide');
+                    
+                }
+                if (main) {
+                    main.classList.remove('is-hidden');
+                    main.classList.add('is-visible');
+                }
+                
+                startTypeWriter();
+            };
+
+            setTimeout(reveal, 1500);
+
+            const emailInput = document.getElementById('email');
+            if (emailInput) {
+                emailInput.focus(); // Exibe foco no input email quando a tela carrega
+            }
+        });
+    </script>
+</body>
 
 </html>
